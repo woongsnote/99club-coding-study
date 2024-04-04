@@ -1,14 +1,18 @@
 import { Client } from "@notionhq/client";
+import {
+  BlockObjectResponse,
+  PageObjectResponse,
+} from "@notionhq/client/build/src/api-endpoints";
 
-const notion = new Client({
-  auth: process.env.NOTION_SECRET,
+export const notionClient = new Client({
+  auth: process.env.NOTION_TOKEN,
 });
 
-const databaseId = process.env.NOTION_DATABASE_ID ?? "";
+const databaseId = process.env.NOTION_DATABASE_ID!;
 
 //TODO sorts by date
 export const getDatabaseData = async () => {
-  const response = await notion.databases.query({
+  const response = await notionClient.databases.query({
     database_id: databaseId,
     sorts: [
       {
@@ -20,9 +24,20 @@ export const getDatabaseData = async () => {
   return response;
 };
 
-export const getPageData = async (pageId: string) => {
-  const response = await notion.pages.retrieve({
-    page_id: pageId,
+export const getPageDataBySlug = async (slug: string) => {
+  const response = await notionClient.databases.query({
+    database_id: databaseId,
+    filter: {
+      property: "Slug",
+      rich_text: {
+        equals: slug,
+      },
+    },
   });
-  return response;
+  return response.results[0] as PageObjectResponse | undefined;
+};
+
+export const getPageContent = async (pageId: string) => {
+  const response = await notionClient.blocks.children.list({ block_id: pageId });
+  return response.results as BlockObjectResponse[];
 };
