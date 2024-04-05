@@ -28,6 +28,7 @@ export default async function DetailPage({
   notionRenderer.use(hljsPlugin({}));
 
   const html = await notionRenderer.render(...content);
+
   //TODO remove any
   return (
     <Suspense fallback={<Loading />}>
@@ -38,6 +39,7 @@ export default async function DetailPage({
         }
         publishedDate={(post.properties.PublishedDate as any).date.start}
         level={(post.properties.Level as any).select.name}
+        link={(post.properties.ProblemLink as any).url}
         content={html}
       />
     </Suspense>
