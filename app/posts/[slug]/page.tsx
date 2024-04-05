@@ -2,10 +2,12 @@ import {
   getPageContent,
   getPageDataBySlug,
   notionClient,
-} from "../utils/notion";
-import { Post } from "../components/Post";
+} from "../../utils/notion";
+import { Post } from "../../components/Post";
 import { notFound } from "next/navigation";
 import { NotionRenderer } from "@notion-render/client";
+import { Suspense } from "react";
+import { Loading } from "../../components/Loading";
 import hljsPlugin from "@notion-render/hljs-plugin";
 
 export default async function DetailPage({
@@ -26,14 +28,18 @@ export default async function DetailPage({
   notionRenderer.use(hljsPlugin({}));
 
   const html = await notionRenderer.render(...content);
-
-  console.log("Post: ", post);
-  console.log("Description", post.properties.Description);
+  //TODO remove any
   return (
-    <Post
-      title={(post.properties.Title as any).title[0].plain_text}
-      description={(post.properties.Description as any).rich_text[0].plain_text}
-      content={html}
-    />
+    <Suspense fallback={<Loading />}>
+      <Post
+        title={(post.properties.Title as any).title[0].plain_text}
+        description={
+          (post.properties.Description as any).rich_text[0].plain_text
+        }
+        publishedDate={(post.properties.PublishedDate as any).date.start}
+        level={(post.properties.Level as any).select.name}
+        content={html}
+      />
+    </Suspense>
   );
 }

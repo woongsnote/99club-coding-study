@@ -10,13 +10,13 @@ export const notionClient = new Client({
 
 const databaseId = process.env.NOTION_DATABASE_ID!;
 
-//TODO sorts by date
-export const getDatabaseData = async () => {
+export const getDatabaseData = async (pageSize?: number) => {
   const response = await notionClient.databases.query({
     database_id: databaseId,
+    page_size: pageSize,
     sorts: [
       {
-        property: "date",
+        property: "PublishedDate",
         direction: "descending",
       },
     ],
@@ -38,6 +38,8 @@ export const getPageDataBySlug = async (slug: string) => {
 };
 
 export const getPageContent = async (pageId: string) => {
-  const response = await notionClient.blocks.children.list({ block_id: pageId });
+  const response = await notionClient.blocks.children.list({
+    block_id: pageId,
+  });
   return response.results as BlockObjectResponse[];
 };

@@ -7,8 +7,8 @@ import { Footer } from "./components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "99club",
-  description: "Coding Study",
+  title: "99Club",
+  description: "Coding Study in 99Club to solve programmers question",
 };
 
 export default function RootLayout({
@@ -17,10 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-black text-white`}>
+    <html lang="kr">
+      <body className={`${inter.className} bg-gray-50`}>
         <Header />
-        <main className="min-h-screen pt-14 p-2">{children}</main>
+        <main className="min-h-screen pt-14 p-2 max-w-5xl mx-auto">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
