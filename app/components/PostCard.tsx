@@ -1,19 +1,23 @@
 import Link from "next/link";
 import { TPost } from "../types";
+import { FormattedDate } from "./FormattedDate";
+import { Level } from "./Level";
 
 export const PostCard = ({
   title,
   description,
   publishedDate,
   slug,
+  level,
 }: TPost) => {
   return (
-    <Link href={`/${slug}`} className="">
-      <article className="text-3xl p-2 rounded-lg flex flex-col gap-2 hover:bg-red-500/90 overflow-hidden break-keep">
-        <h2 className="font-bold">{title}</h2>
-        <div className="flex justify-between">
-          <p className="text-sm font-extralight">{description}</p>
-          <span className="text-sm">{publishedDate}</span>
+    <Link href={`/posts/${slug}`}>
+      <article className="p-2 rounded-lg flex gap-4 items-center overflow-hidden break-keep w-full">
+        <FormattedDate date={publishedDate!} />
+        <div className="flex flex-col">
+          {level && <Level level={level} />}
+          <h2 className="font-bold text-2xl">{title}</h2>
+          <p className="text-sm opacity-80">{description}</p>
         </div>
       </article>
     </Link>

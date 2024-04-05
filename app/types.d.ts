@@ -4,4 +4,5 @@ export type TPost = {
   level?: "beginner" | "middler" | "challenger";
   publishedDate?: string;
   slug: string;
+  problemLink?: string;
 };
