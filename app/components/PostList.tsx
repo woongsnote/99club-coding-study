@@ -1,7 +1,6 @@
 import { PostCard } from "./PostCard";
 
 export const PostList = ({ posts }: { posts: any[] }) => {
-  console.log(posts[0].properties);
   return (
     <ul className="m-2 p-2 flex flex-col gap-y-4 max-w-3xl mx-auto">
       {posts.map((post) => {
