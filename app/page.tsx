@@ -1,8 +1,6 @@
 import { Suspense } from "react";
-import { PostList } from "./components/PostList";
-import { getDatabaseData } from "./utils/notion";
-import { Hero } from "./components/Hero";
-import { Loading } from "./components/Loading";
+import { getDatabaseData } from "@/app/utils/notion";
+import { Hero, Loading, PostList } from "@/app/components";
 
 const LATEST_POSTS = 5;
 
@@ -12,8 +10,8 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <Suspense fallback={<Loading />}>
-        <PostList posts={latestPosts.results} />
+      <Suspense fallback={<Loading len={LATEST_POSTS} />}>
+        <PostList posts={latestPosts} />
       </Suspense>
     </>
   );
