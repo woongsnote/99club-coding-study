@@ -5,11 +5,9 @@ export const Header = () => {
       <Link href="/" className="text-2xl font-black text-red-500 w-fit">
         99Club
       </Link>
-      <nav>
-        <Link href="/posts" className="text-black hover:text-red-500 font-bold">
-          Posts
-        </Link>
-      </nav>
+      <Link href="/posts" className="text-black hover:text-red-500 font-bold">
+        Posts
+      </Link>
     </header>
   );
 };

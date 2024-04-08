@@ -10,17 +10,17 @@ const links: socialLink[] = [
   {
     title: "blog",
     link: "https://woongsnote.dev",
-    icon: <BiLogoBlogger size={24} />,
+    icon: <BiLogoBlogger size={32} />,
   },
   {
     title: "github",
     link: "https://github.com/woongsnote",
-    icon: <BiLogoGithub size={24} />,
+    icon: <BiLogoGithub size={32} />,
   },
   {
     title: "email",
     link: "mailto:woongsnote@gmail.com",
-    icon: <BiLogoGmail size={24} />,
+    icon: <BiLogoGmail size={32} />,
   },
 ];
 export const SocialLinks = () => {
@@ -31,7 +31,8 @@ export const SocialLinks = () => {
           key={title}
           href={link}
           target="_blank"
-          className="hover:text-red-500">
+          className="hover:text-red-500 drop-shadow-md"
+          aria-label={`go to ${title} page`}>
           {icon}
         </Link>
       ))}

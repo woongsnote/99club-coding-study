@@ -1,8 +1,13 @@
+import "server-only";
 import { Client } from "@notionhq/client";
 import {
   BlockObjectResponse,
+  DatabaseObjectResponse,
   PageObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
+import { NotionRenderer } from "@notion-render/client";
+import hljsPlugin from "@notion-render/hljs-plugin";
+import { TNotionPage } from "@/app/types";
 
 export const notionClient = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -14,6 +19,16 @@ export const getDatabaseData = async (pageSize?: number) => {
   const response = await notionClient.databases.query({
     database_id: databaseId,
     page_size: pageSize,
+    filter: {
+      or: [
+        {
+          property: "Status",
+          status: {
+            equals: "Published",
+          },
+        },
+      ],
+    },
     sorts: [
       {
         property: "PublishedDate",
@@ -21,7 +36,7 @@ export const getDatabaseData = async (pageSize?: number) => {
       },
     ],
   });
-  return response;
+  return response.results as (DatabaseObjectResponse & TNotionPage)[];
 };
 
 export const getPageDataBySlug = async (slug: string) => {
@@ -34,7 +49,7 @@ export const getPageDataBySlug = async (slug: string) => {
       },
     },
   });
-  return response.results[0] as PageObjectResponse | undefined;
+  return response.results[0] as PageObjectResponse & TNotionPage;
 };
 
 export const getPageContent = async (pageId: string) => {
@@ -42,4 +57,14 @@ export const getPageContent = async (pageId: string) => {
     block_id: pageId,
   });
   return response.results as BlockObjectResponse[];
+};
+
+export const renderPageContent = async (content: BlockObjectResponse[]) => {
+  const notionRenderer = new NotionRenderer({
+    client: notionClient,
+  });
+
+  notionRenderer.use(hljsPlugin({}));
+
+  return await notionRenderer.render(...content);
 };

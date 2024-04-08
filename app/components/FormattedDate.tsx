@@ -1,6 +1,6 @@
-function dateToMonth(date: Date): string {
+const dateToMonth = (date: Date): string => {
   return date.toLocaleDateString("en", { month: "short" });
-}
+};
 
 export const FormattedDate = ({ date }: { date: string }) => {
   const currentDate = new Date(date);

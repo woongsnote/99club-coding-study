@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { TPost } from "../types";
-import { FormattedDate } from "./FormattedDate";
-import { Level } from "./Level";
+import { TPost } from "@/app/types";
+import { FormattedDate } from "@/app/components/FormattedDate";
+import { Level } from "@/app/components/Level";
 
 export const PostCard = ({
   title,
@@ -13,7 +13,7 @@ export const PostCard = ({
   return (
     <Link href={`/posts/${slug}`}>
       <article className="p-2 rounded-lg flex gap-4 items-center overflow-hidden break-keep w-full">
-        <FormattedDate date={publishedDate!} />
+        {publishedDate && <FormattedDate date={publishedDate} />}
         <div className="flex flex-col">
           {level && <Level level={level} />}
           <h2 className="font-bold text-2xl">{title}</h2>
