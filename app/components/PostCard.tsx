@@ -16,7 +16,7 @@ export const PostCard = ({
         {publishedDate && <FormattedDate date={publishedDate} />}
         <div className="flex flex-col">
           {level && <Level level={level} />}
-          <h2 className="font-bold text-2xl">{title}</h2>
+          <h2 className="font-bold text-lg lg:text-2xl">{title}</h2>
           <p className="text-sm opacity-80">{description}</p>
         </div>
       </article>
