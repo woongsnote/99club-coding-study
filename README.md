@@ -55,4 +55,4 @@ NOTION_DATABASE_ID="your_database_id"
 npm run dev
 ```
 
-웹 브라우저에서 http://localhost:3000로 접속하여 프로젝트를 확인하세요.
+웹 브라우저에서 http://localhost:3000 로 접속하여 프로젝트를 확인하세요.
