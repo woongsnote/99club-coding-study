@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { BiRightTopArrowCircle } from "react-icons/bi";
 import { TPost } from "@/app/types";
-import { Level } from "@/app/components/Level";
-
-const tags = ["99일지", "99클럽", "TIL", "개발자스터디", "코딩테스트", "항해"];
+import { Level, TagList } from "@/app/components";
 
 export const PostHeader = ({
   title,
@@ -13,18 +11,14 @@ export const PostHeader = ({
   problemLink,
 }: TPost) => {
   return (
-    <section className="border-b items-center flex flex-col pb-4 gap-6">
+    <section className="w-full border-b items-center flex flex-col pb-4 gap-6 break-keep">
       <div className="w-full flex justify-between">
         {level && <Level level={level} />}
         <span className="w-fit">{publishedDate}</span>
       </div>
-      <h2 className="text-5xl font-black">{title}</h2>
+      <h2 className="text-3xl lg:text-5xl font-black">{title}</h2>
       <p className="text-base">{description}</p>
-      <p className="flex gap-x-2 text-sm">
-        {tags.map((tag) => (
-          <span key={tag}>#{tag}</span>
-        ))}
-      </p>
+      <TagList />
       {problemLink && (
         <Link
           href={problemLink}
