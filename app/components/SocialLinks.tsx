@@ -14,7 +14,7 @@ const links: socialLink[] = [
   },
   {
     title: "github",
-    link: "https://github.com/woongsnote",
+    link: "https://github.com/woongsnote/99club-coding-study",
     icon: <BiLogoGithub size={32} />,
   },
   {
