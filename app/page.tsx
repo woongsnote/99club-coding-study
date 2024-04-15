@@ -1,8 +1,7 @@
 import { Suspense } from "react";
 import { getDatabaseData } from "@/app/utils/notion";
 import { Hero, Loading, PostList } from "@/app/components";
-
-const LATEST_POSTS = 5;
+import { LATEST_POSTS } from "@/app/lib/constants";
 
 export default async function Home() {
   const latestPosts = await getDatabaseData(LATEST_POSTS);

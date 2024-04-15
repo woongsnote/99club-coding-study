@@ -9,3 +9,5 @@ export const PROBLEM_LEVELS: string[] = [
   "Middler",
   "Challenger",
 ];
+
+export const LATEST_POSTS = 5;
