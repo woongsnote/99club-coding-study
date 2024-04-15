@@ -1,9 +1,15 @@
 import { TNotionPage } from "@/app/types";
 import { PostCard } from "@/app/components/PostCard";
 
+const postListStyle = `p-2 flex flex-col space-y-6 max-w-3xl mx-auto mt-4`;
+
 export const PostList = ({ posts }: { posts: TNotionPage[] }) => {
+  if (posts.length === 0) {
+    return <div className={postListStyle}>표시할 게시글이 없습니다.</div>;
+  }
+
   return (
-    <ul className="m-2 p-2 flex flex-col gap-y-4 max-w-3xl mx-auto">
+    <ul className={postListStyle}>
       {posts.map((post) => {
         return (
           <li key={post.id}>

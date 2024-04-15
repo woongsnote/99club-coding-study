@@ -15,16 +15,22 @@ export const notionClient = new Client({
 
 const databaseId = process.env.NOTION_DATABASE_ID!;
 
-export const getDatabaseData = async (pageSize?: number) => {
+export const getDatabaseData = async (pageSize?: number, level?: string) => {
   const response = await notionClient.databases.query({
     database_id: databaseId,
     page_size: pageSize,
     filter: {
-      or: [
+      and: [
         {
           property: "Status",
           status: {
             equals: "Published",
+          },
+        },
+        {
+          property: "Level",
+          select: {
+            equals: level ?? "",
           },
         },
       ],

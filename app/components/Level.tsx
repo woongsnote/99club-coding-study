@@ -8,14 +8,17 @@ export const Level = ({ level }: { level: string }) => {
   } else if (level === "Middler") {
     bgColor = "bg-blue-100";
     textColor = "text-blue-800";
-  } else {
+  } else if (level === "Beginner") {
     bgColor = "bg-red-100";
     textColor = "text-red-800";
+  } else {
+    bgColor = "bg-gray-100";
+    textColor = "text-gray-800";
   }
 
   return (
     <span
-      className={`w-fit mb-1 ${bgColor} ${textColor} text-xs font-medium me-2 px-2.5 py-0.5 rounded-full`}>
+      className={`w-fit mb-1 ${bgColor} ${textColor} text-xs font-medium me-2 px-2.5 py-0.5 rounded-full lg:text-sm`}>
       {level}
     </span>
   );
