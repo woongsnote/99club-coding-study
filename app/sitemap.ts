@@ -1,15 +1,15 @@
 import { MetadataRoute } from "next";
 import { getDatabaseData } from "./utils/notion";
-
-const BASE_URL = "https://99club-coding-study.vercel.app";
+import { BASE_URL } from "./lib/constants";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getDatabaseData();
 
+  if (!posts) return [];
+
   return posts.map((post) => ({
-    url: `${BASE_URL}/posts/${post.url}`,
+    url: `${BASE_URL}/posts/${post.properties.Slug.rich_text[0].plain_text}`,
     lastModified: post.last_edited_time,
-    priority: 0.8,
     changeFrequency: "daily",
   }));
 }

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Level } from "./Level";
-
-const levels = ["All", "Beginner", "Middler", "Challenger"];
+import { PROBLEM_LEVELS as levels } from "@/app/lib/constants";
 
 export const Levels = () => {
   return (
