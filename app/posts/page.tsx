@@ -14,7 +14,7 @@ type Props = {
 };
 
 export default async function PostsPage({ searchParams }: Props) {
-  let allPosts: TNotionPage[] = [];
+  let allPosts: TNotionPage[] | undefined = [];
 
   if (!searchParams || searchParams.level === "All") {
     allPosts = await getDatabaseData();

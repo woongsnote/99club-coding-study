@@ -15,8 +15,8 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPageDataBySlug(params.slug);
 
-  const title = post.properties.Title.title[0].plain_text;
-  const description = post.properties.Description.rich_text[0].plain_text;
+  const title = post?.properties.Title.title[0].plain_text;
+  const description = post?.properties.Description.rich_text[0].plain_text;
 
   return {
     title: title,
@@ -40,7 +40,7 @@ export default async function PostPage({ params }: Props) {
 
   const content = await getPageContent(post.id);
 
-  const html = await renderPageContent(content);
+  const html = await renderPageContent(content!);
 
   return (
     <article className="w-full flex flex-col p-4 rounded-lg mx-auto border-2">
