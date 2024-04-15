@@ -11,7 +11,7 @@ export default async function Home() {
     <>
       <Hero />
       <Suspense fallback={<Loading len={LATEST_POSTS} />}>
-        <PostList posts={latestPosts} />
+        <PostList posts={latestPosts!} />
       </Suspense>
     </>
   );
