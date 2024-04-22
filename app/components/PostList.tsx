@@ -5,7 +5,7 @@ const postListStyle = `p-2 flex flex-col space-y-6 max-w-3xl mx-auto mt-4`;
 
 export const PostList = ({ posts }: { posts: TNotionPage[] }) => {
   if (posts.length === 0) {
-    return <div className={postListStyle}>표시할 게시글이 없습니다.</div>;
+    return <div className={postListStyle}>Coming soon...</div>;
   }
 
   return (

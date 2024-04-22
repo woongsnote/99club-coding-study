@@ -1,15 +1,27 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import { Header, Footer } from "@/app/components";
 
 export const revalidate = 3600;
 
-const inter = Inter({ subsets: ["latin"] });
+const sans = Noto_Sans_KR({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   title: "99Club",
-  description: "Coding Study in 99Club to solve programmers question",
+  applicationName: "99Club",
+  description: "A collection of problems solved during coding study at 99club",
+  generator: "Next.js",
+  keywords: ["Next.js", "React", "TypeScript"],
+  authors: { name: "Jiwoong Moon", url: "https://woongsnote.dev" },
+  creator: "Jiwoong Moon",
+  openGraph: {
+    url: "https://99club-coding-study.vercel.app",
+  },
 };
 
 export default function RootLayout({
@@ -19,9 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr">
-      <body className={`${inter.className} bg-gray-50`}>
+      <body className={`${sans.variable} bg-gray-50`}>
         <Header />
-        <main className="min-h-screen pt-14 p-2 mx-auto container lg:max-w-5xl">
+        <main className="min-h-screen pt-12 p-2 mx-auto container">
           {children}
         </main>
         <Footer />

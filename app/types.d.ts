@@ -10,6 +10,7 @@ export type TPost = {
 
 export type TNotionPage = {
   id: string;
+  last_edited_time: string,
   properties: {
     Title: {
       title: [{ plain_text: string }];

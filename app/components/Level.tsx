@@ -18,7 +18,8 @@ export const Level = ({ level }: { level: string }) => {
 
   return (
     <span
-      className={`w-fit mb-1 ${bgColor} ${textColor} text-xs font-medium me-2 px-2.5 py-0.5 rounded-full lg:text-sm`}>
+      className={`w-fit mb-1 ${bgColor} ${textColor} text-xs font-medium me-2 px-2.5 py-0.5 rounded-full lg:text-sm`}
+    >
       {level}
     </span>
   );

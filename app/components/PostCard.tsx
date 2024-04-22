@@ -12,12 +12,12 @@ export const PostCard = ({
 }: TPost) => {
   return (
     <Link href={`/posts/${slug}`}>
-      <article className="rounded-lg flex gap-4 items-center overflow-hidden break-keep w-full">
+      <article className="rounded-lg flex gap-4 items-center overflow-hidden break-keep w-full hover:bg-gray-100 py-2 px-1 hover:drop-shadow-lg">
         {publishedDate && <FormattedDate date={publishedDate} />}
-        <div className="flex flex-col">
+        <div className="flex flex-col space-y-2">
           {level && <Level level={level} />}
-          <h2 className="font-bold text-lg lg:text-2xl">{title}</h2>
-          <p className="text-sm opacity-80">{description}</p>
+          <h2 className="text-lg lg:text-4xl">{title}</h2>
+          <p className="text-sm opacity-80 lg:text-lg">{description}</p>
         </div>
       </article>
     </Link>

@@ -15,7 +15,12 @@ export const notionClient = new Client({
 
 const databaseId = process.env.NOTION_DATABASE_ID!;
 
-export const getDatabaseData = async (pageSize?: number, level?: string) => {
+const filter = {};
+
+export const queryNotionPages = async (
+  pageSize?: number,
+  level?: string
+): Promise<TNotionPage[]> => {
   try {
     const response = await notionClient.databases.query({
       database_id: databaseId,
@@ -45,8 +50,23 @@ export const getDatabaseData = async (pageSize?: number, level?: string) => {
     });
     return response.results as (DatabaseObjectResponse & TNotionPage)[];
   } catch (error) {
-    console.error(error);
+    console.error("Error occurred while fetching pages:", error);
+    throw new Error("Failed to fetch pages. Please try again later.");
   }
+};
+
+export const getLatestPosts = async (): Promise<TNotionPage[]> => {
+  return queryNotionPages(5);
+};
+
+export const getAllPosts = async (): Promise<TNotionPage[]> => {
+  return queryNotionPages();
+};
+
+export const getPostsByLevel = async (
+  level: string
+): Promise<TNotionPage[]> => {
+  return queryNotionPages(0, level);
 };
 
 export const getPageDataBySlug = async (slug: string) => {
@@ -62,7 +82,8 @@ export const getPageDataBySlug = async (slug: string) => {
     });
     return response.results[0] as PageObjectResponse & TNotionPage;
   } catch (error) {
-    console.error(error);
+    console.error("Error occurred while fetching page:", error);
+    throw new Error("Failed to fetch page. Please try again later.");
   }
 };
 
@@ -73,7 +94,8 @@ export const getPageContent = async (pageId: string) => {
     });
     return response.results as BlockObjectResponse[];
   } catch (error) {
-    console.error(error);
+    console.error("Error occurred while fetching page contents:", error);
+    throw new Error("Failed to fetch page contents. Please try again later.");
   }
 };
 

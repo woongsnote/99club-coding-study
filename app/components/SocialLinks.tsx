@@ -32,7 +32,8 @@ export const SocialLinks = () => {
           href={link}
           target="_blank"
           className="hover:text-red-500 drop-shadow-md"
-          aria-label={`go to ${title} page`}>
+          aria-label={`go to ${title} page`}
+        >
           {icon}
         </Link>
       ))}

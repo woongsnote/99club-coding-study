@@ -10,6 +10,11 @@ const config: Config = {
     container: {
       center: true,
     },
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-inter)"],
+      },
+    },
   },
   plugins: [require("@tailwindcss/typography")],
 };

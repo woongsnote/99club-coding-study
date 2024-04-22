@@ -5,8 +5,7 @@ import {
   getPageDataBySlug,
   renderPageContent,
 } from "@/app/utils/notion";
-import { PostHeader, Post } from "@/app/components";
-import { Comments } from "@/app/components/Comments";
+import { PostHeader, Post, Comments } from "@/app/components";
 
 type Props = {
   params: { slug: string };
@@ -43,7 +42,7 @@ export default async function PostPage({ params }: Props) {
   const html = await renderPageContent(content!);
 
   return (
-    <article className="w-full flex flex-col p-4 rounded-lg mx-auto border-2">
+    <article className="w-full flex flex-col p-4 rounded-lg mx-auto border-2 m-4">
       <PostHeader
         title={post.properties.Title?.title[0]?.plain_text}
         description={post.properties.Description?.rich_text[0]?.plain_text}

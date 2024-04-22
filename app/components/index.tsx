@@ -6,4 +6,6 @@ export { PostList } from "./PostList";
 export { Post } from "./Post";
 export { PostHeader } from "./PostHeader";
 export { Level } from "./Level";
+export { Levels } from "./Levels";
 export { TagList } from "./TagList";
+export { Comments } from "./Comments";

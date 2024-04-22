@@ -1,7 +1,7 @@
 import { PostCardSkeleton } from "./PostCardSkeleton";
 
-export const Loading = ({ len }: { len?: number }) => {
-  const skeletonArray = new Array(len).fill(0);
+export const Loading = ({ arrayLength }: { arrayLength?: number }) => {
+  const skeletonArray = new Array(arrayLength).fill(0);
 
   return (
     <ul>
