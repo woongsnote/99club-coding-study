@@ -22,7 +22,8 @@ export const PostHeader = ({
       {problemLink && (
         <Link
           href={problemLink}
-          className="flex gap-2 items-center hover:text-white rounded-full hover:bg-red-500/80 px-2">
+          className="flex gap-2 items-center hover:text-white rounded-full hover:bg-red-500/80 px-2"
+        >
           직접 풀러가기
           <BiRightTopArrowCircle />
         </Link>

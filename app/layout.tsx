@@ -33,7 +33,7 @@ export default function RootLayout({
     <html lang="kr">
       <body className={`${sans.variable} bg-gray-50`}>
         <Header />
-        <main className="min-h-screen pt-12 p-2 mx-auto container lg:max-w-5xl">
+        <main className="min-h-screen pt-12 p-2 mx-auto container">
           {children}
         </main>
         <Footer />

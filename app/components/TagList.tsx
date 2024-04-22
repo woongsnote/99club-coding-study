@@ -4,9 +4,7 @@ export const TagList = () => {
   return (
     <div className="flex flex-wrap gap-2 text-sm items-center justify-center">
       {tags.map((tag) => (
-        <span key={tag}>
-          #{tag}
-        </span>
+        <span key={tag}>#{tag}</span>
       ))}
     </div>
   );

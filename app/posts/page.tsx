@@ -1,8 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import { getDatabaseData } from "@/app/utils/notion";
-import { Loading, PostList } from "@/app/components";
-import { Levels } from "../components/Levels";
+import { getAllPosts, getPostsByLevel } from "@/app/utils/notion";
+import { Loading, PostList, Levels } from "@/app/components";
 import { TNotionPage } from "@/app/types";
 
 export const metadata: Metadata = {
@@ -17,16 +16,16 @@ export default async function PostsPage({ searchParams }: Props) {
   let allPosts: TNotionPage[] | undefined = [];
 
   if (!searchParams || searchParams.level === "All") {
-    allPosts = await getDatabaseData();
+    allPosts = await getAllPosts();
   } else {
-    allPosts = await getDatabaseData(0, searchParams.level);
+    allPosts = await getPostsByLevel(searchParams.level);
   }
 
   return (
     <>
       <Levels />
-      <Suspense fallback={<Loading len={allPosts?.length} />}>
-        {allPosts && <PostList posts={allPosts} />}
+      <Suspense fallback={<Loading arrayLength={allPosts?.length} />}>
+        {allPosts ? <PostList posts={allPosts} /> : <>No Posts</>}
       </Suspense>
     </>
   );

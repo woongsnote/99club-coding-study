@@ -5,8 +5,7 @@ import {
   getPageDataBySlug,
   renderPageContent,
 } from "@/app/utils/notion";
-import { PostHeader, Post } from "@/app/components";
-import { Comments } from "@/app/components/Comments";
+import { PostHeader, Post, Comments } from "@/app/components";
 
 type Props = {
   params: { slug: string };
