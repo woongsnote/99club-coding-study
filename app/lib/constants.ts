@@ -10,4 +10,4 @@ export const PROBLEM_LEVELS: string[] = [
   "Challenger",
 ];
 
-export const LATEST_POSTS = 5;
+export const LATEST_POSTS: number = 5;
