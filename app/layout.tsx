@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   keywords: ["Next.js", "React", "TypeScript"],
   authors: { name: "Jiwoong Moon", url: "https://woongsnote.dev" },
   creator: "Jiwoong Moon",
+  metadataBase: new URL("https://99club-coding-study.vercel.app"),
   openGraph: {
     url: "https://99club-coding-study.vercel.app",
   },
