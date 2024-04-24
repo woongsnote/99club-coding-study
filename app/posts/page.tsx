@@ -5,7 +5,7 @@ import { Loading, PostList, Levels } from "@/app/components";
 import { TNotionPage } from "@/app/types";
 
 export const metadata: Metadata = {
-  title: "Posts | 99Club",
+  title: "Posts",
 };
 
 type Props = {
