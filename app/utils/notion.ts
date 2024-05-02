@@ -15,9 +15,7 @@ export const notionClient = new Client({
 
 const databaseId = process.env.NOTION_DATABASE_ID!;
 
-const filter = {};
-
-export const queryNotionPages = async (
+const queryNotionDatabase = async (
   pageSize?: number,
   level?: string
 ): Promise<TNotionPage[]> => {
@@ -55,21 +53,37 @@ export const queryNotionPages = async (
   }
 };
 
-export const getLatestPosts = async (): Promise<TNotionPage[]> => {
-  return queryNotionPages(5);
+export const getLatestNotionPages = async (
+  maxLatestPosts: number
+): Promise<TNotionPage[]> => {
+  try {
+    return await queryNotionDatabase(maxLatestPosts);
+  } catch (error) {
+    throw new Error("Failed to fetch latest posts. Please try again later.");
+  }
 };
 
 export const getAllPosts = async (): Promise<TNotionPage[]> => {
-  return queryNotionPages();
+  try {
+    return await queryNotionDatabase();
+  } catch (error) {
+    throw new Error("Failed to fetch all posts. Please try again later.");
+  }
 };
 
 export const getPostsByLevel = async (
   level: string
 ): Promise<TNotionPage[]> => {
-  return queryNotionPages(0, level);
+  try {
+    return await queryNotionDatabase(0, level);
+  } catch (error) {
+    throw new Error(`Failed to fetch ${level} posts. Please try again later.`);
+  }
 };
 
-export const getPageDataBySlug = async (slug: string) => {
+export const getPageDataBySlug = async (
+  slug: string
+): Promise<PageObjectResponse & TNotionPage> => {
   try {
     const response = await notionClient.databases.query({
       database_id: databaseId,
@@ -87,7 +101,9 @@ export const getPageDataBySlug = async (slug: string) => {
   }
 };
 
-export const getPageContent = async (pageId: string) => {
+export const getPageContent = async (
+  pageId: string
+): Promise<BlockObjectResponse[]> => {
   try {
     const response = await notionClient.blocks.children.list({
       block_id: pageId,
@@ -99,12 +115,18 @@ export const getPageContent = async (pageId: string) => {
   }
 };
 
-export const renderPageContent = async (content: BlockObjectResponse[]) => {
+export const renderPageContent = async (
+  content: BlockObjectResponse[]
+): Promise<string> => {
   const notionRenderer = new NotionRenderer({
     client: notionClient,
   });
 
   notionRenderer.use(hljsPlugin({}));
 
-  return await notionRenderer.render(...content);
+  try {
+    return await notionRenderer.render(...content);
+  } catch (error) {
+    throw new Error("Failed to render page. Please try again later");
+  }
 };

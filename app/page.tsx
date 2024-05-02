@@ -1,10 +1,11 @@
 import { Suspense } from "react";
-import { getLatestPosts } from "@/app/utils/notion";
+import { getLatestNotionPages } from "@/app/utils/notion";
 import { Hero, Loading, PostList } from "@/app/components";
 import { LATEST_POSTS } from "@/app/lib/constants";
+import { TNotionPage } from "@/app/types";
 
 export default async function Home() {
-  const latestPosts = await getLatestPosts();
+  const latestPosts: TNotionPage[] = await getLatestNotionPages(LATEST_POSTS);
 
   return (
     <>
