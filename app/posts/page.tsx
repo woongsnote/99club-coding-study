@@ -23,6 +23,9 @@ export default async function PostsPage({ searchParams }: Props) {
 
   return (
     <>
+      <h2 className="text-3xl lg:text-5xl font-black max-w-4xl w-full mx-auto my-2">
+        Posts
+      </h2>
       <Levels />
       <Suspense fallback={<Loading arrayLength={allPosts?.length} />}>
         {allPosts ? <PostList posts={allPosts} /> : <>No Posts</>}

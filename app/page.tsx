@@ -5,13 +5,14 @@ import { LATEST_POSTS } from "@/app/lib/constants";
 import { TNotionPage } from "@/app/types";
 
 export default async function Home() {
-  const latestPosts: TNotionPage[] = await getLatestNotionPages(LATEST_POSTS);
+  let latestPosts: TNotionPage[] | undefined = [];
+  latestPosts = await getLatestNotionPages(LATEST_POSTS);
 
   return (
     <>
       <Hero />
       <Suspense fallback={<Loading arrayLength={LATEST_POSTS} />}>
-        <PostList posts={latestPosts!} />
+        {latestPosts ? <PostList posts={latestPosts} /> : <>No Posts</>}
       </Suspense>
     </>
   );

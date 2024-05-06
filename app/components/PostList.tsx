@@ -1,7 +1,7 @@
 import { TNotionPage } from "@/app/types";
 import { PostCard } from "@/app/components/PostCard";
 
-const postListStyle = `p-2 flex flex-col space-y-6 max-w-3xl mx-auto mt-4`;
+const postListStyle = `p-2 flex flex-col space-y-6 max-w-4xl mx-auto mt-4`;
 
 export const PostList = ({ posts }: { posts: TNotionPage[] }) => {
   if (posts.length === 0) {
