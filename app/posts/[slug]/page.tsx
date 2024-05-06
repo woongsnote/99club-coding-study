@@ -42,7 +42,7 @@ export default async function PostPage({ params }: Props) {
   const html = await renderPageContent(content!);
 
   return (
-    <article className="w-full flex flex-col p-4 rounded-lg mx-auto border-2 m-4">
+    <article className="w-full flex flex-col p-4 rounded-lg mx-auto border-2 m-4 max-w-5xl">
       <PostHeader
         title={post.properties.Title?.title[0]?.plain_text}
         description={post.properties.Description?.rich_text[0]?.plain_text}

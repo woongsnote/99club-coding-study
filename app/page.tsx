@@ -1,16 +1,18 @@
 import { Suspense } from "react";
-import { getLatestPosts } from "@/app/utils/notion";
+import { getLatestNotionPages } from "@/app/utils/notion";
 import { Hero, Loading, PostList } from "@/app/components";
 import { LATEST_POSTS } from "@/app/lib/constants";
+import { TNotionPage } from "@/app/types";
 
 export default async function Home() {
-  const latestPosts = await getLatestPosts();
+  let latestPosts: TNotionPage[] | undefined = [];
+  latestPosts = await getLatestNotionPages(LATEST_POSTS);
 
   return (
     <>
       <Hero />
       <Suspense fallback={<Loading arrayLength={LATEST_POSTS} />}>
-        <PostList posts={latestPosts!} />
+        {latestPosts ? <PostList posts={latestPosts} /> : <>No Posts</>}
       </Suspense>
     </>
   );

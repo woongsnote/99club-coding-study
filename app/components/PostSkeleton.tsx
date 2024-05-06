@@ -1,6 +1,6 @@
 export const PostSkeleton = () => {
   return (
-    <article className="w-full flex flex-col p-4 rounded-lg mx-auto border-2 animate-pulse">
+    <article className="w-full flex flex-col p-4 rounded-lg mx-auto border-2 animate-pulse max-w-5xl">
       <div className="w-full border-b items-center flex flex-col pb-4 gap-6">
         <div className="w-full flex justify-between">
           <div className="h-4 bg-gray-300 rounded w-24"></div>
