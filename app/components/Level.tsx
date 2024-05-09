@@ -1,3 +1,5 @@
+import { Chip } from "@nextui-org/chip";
+
 export const Level = ({ level }: { level: string }) => {
   let bgColor = "";
   let textColor = "";
@@ -17,10 +19,8 @@ export const Level = ({ level }: { level: string }) => {
   }
 
   return (
-    <span
-      className={`w-fit mb-1 ${bgColor} ${textColor} text-xs font-medium me-2 px-2.5 py-0.5 rounded-full lg:text-sm`}
-    >
+    <Chip className={`${bgColor} ${textColor}`} variant="solid">
       {level}
-    </span>
+    </Chip>
   );
 };

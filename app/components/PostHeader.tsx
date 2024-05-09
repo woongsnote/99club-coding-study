@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { BiRightTopArrowCircle } from "react-icons/bi";
 import { TPost } from "@/app/types";
 import { Level, TagList } from "@/app/components";
@@ -20,13 +19,13 @@ export const PostHeader = ({
       <p className="text-base">{description}</p>
       <TagList />
       {problemLink && (
-        <Link
+        <a
           href={problemLink}
-          className="flex gap-2 items-center hover:text-white rounded-full hover:bg-red-500/80 px-2"
-        >
+          target="_blank"
+          className="flex gap-2 items-center hover:text-white rounded-full hover:bg-red-500/80 px-2">
           직접 풀러가기
           <BiRightTopArrowCircle />
-        </Link>
+        </a>
       )}
     </section>
   );
