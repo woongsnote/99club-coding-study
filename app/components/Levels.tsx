@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Level } from "./Level";
-import { PROBLEM_LEVELS as levels } from "@/app/lib/constants";
+import { PROBLEM_LEVELS as levels } from "@/app/constants";
 
 export const Levels = () => {
   return (
