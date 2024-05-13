@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { getLatestNotionPages } from "@/app/utils/notion";
 import { Hero, Loading, PostList } from "@/app/components";
-import { LATEST_POSTS } from "@/app/lib/constants";
+import { LATEST_POSTS } from "@/app/constants";
 import { TNotionPage } from "@/app/types";
 
 export default async function Home() {
